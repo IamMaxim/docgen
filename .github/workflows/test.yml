@@ -1,0 +1,41 @@
+name: Test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    name: Node ${{ matrix.node }} / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ["20", "22"]
+        os: [ubuntu-latest]
+        include:
+          - node: "22"
+            os: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build @iammaxim/docgen
+        run: npm run build -w @iammaxim/docgen
+
+      - name: Test @iammaxim/docgen
+        run: npm test -w @iammaxim/docgen
+
+      - name: Test @iammaxim/create-docgen
+        run: npm test -w @iammaxim/create-docgen
+
+      - name: Type-check @iammaxim/docgen
+        run: npm run check -w @iammaxim/docgen

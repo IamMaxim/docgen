@@ -1,0 +1,298 @@
+.doc-shell {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	max-width: 760px;
+	color: var(--text);
+	font-size: 15px;
+	line-height: 1.6;
+}
+
+.doc-shell h1,
+.doc-shell h2,
+.doc-shell h3,
+.doc-shell h4 {
+	color: var(--text);
+	font-weight: 500;
+	line-height: 1.25;
+}
+
+.doc-shell h1:first-child {
+	display: none;
+}
+
+.doc-shell h2 {
+	margin: 56px 0 16px;
+	font-size: 22px;
+	letter-spacing: -0.015em;
+}
+
+.doc-shell h2::before {
+	content: '';
+	display: inline-block;
+	width: 4px;
+	height: 4px;
+	margin-right: 12px;
+	border-radius: 50%;
+	background: var(--accent);
+	vertical-align: 0.3em;
+}
+
+.doc-shell h3 {
+	margin: 36px 0 12px;
+	font-size: 16px;
+	letter-spacing: -0.005em;
+}
+
+.doc-shell h4 {
+	margin: 24px 0 10px;
+	font-size: 14px;
+}
+
+.doc-shell p {
+	margin: 0 0 14px;
+}
+
+.doc-shell img {
+	max-width: 100%;
+	height: auto;
+}
+
+.doc-shell ul,
+.doc-shell ol {
+	margin: 0 0 18px;
+	padding-left: 20px;
+}
+
+.doc-shell li {
+	margin: 6px 0;
+}
+
+.doc-shell li::marker {
+	color: var(--text-mute);
+}
+
+.doc-shell a:not(.rust-ref-link) {
+	color: var(--accent);
+	text-decoration: none;
+	border-bottom: 1px solid var(--accent-line);
+}
+
+.doc-shell a:not(.rust-ref-link):hover {
+	border-bottom-color: var(--accent);
+}
+
+.doc-shell a.broken-link {
+	color: var(--text-error);
+}
+
+.doc-shell :not(pre) > code {
+	padding: 1px 6px;
+	border: 1px solid var(--code-border);
+	border-radius: 4px;
+	background: var(--code-bg);
+	color: var(--text);
+	font-family: var(--font-mono);
+	font-size: 0.86em;
+	white-space: normal;
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+.doc-shell h1 code,
+.doc-shell h2 code,
+.doc-shell h3 code,
+.doc-shell h4 code {
+	padding: 0 5px;
+	font-size: 0.78em;
+	overflow-wrap: normal;
+	word-break: normal;
+	vertical-align: 0.06em;
+}
+
+.doc-shell hr {
+	appearance: none;
+	height: 1px;
+	width: 100%;
+	margin: 24px 0;
+	border: 0;
+	background: var(--hairline);
+}
+
+.doc-shell input[type='checkbox'] {
+	appearance: none;
+	-webkit-appearance: none;
+	display: inline-grid;
+	place-items: center;
+	width: 14px;
+	height: 14px;
+	margin: 0 6px 0 0;
+	padding: 0;
+	border: 1px solid var(--border-strong);
+	border-radius: 3px;
+	background: var(--surface);
+	vertical-align: -2px;
+	cursor: default;
+}
+.doc-shell input[type='checkbox']:checked {
+	border-color: var(--accent-line);
+	background: var(--accent);
+}
+.doc-shell input[type='checkbox']:checked::after {
+	content: '';
+	width: 10px;
+	height: 10px;
+	background: var(--bg);
+	-webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5l3.2 3.2L13 5' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/></svg>")
+		center / contain no-repeat;
+	mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5l3.2 3.2L13 5' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/></svg>")
+		center / contain no-repeat;
+}
+.doc-shell li:has(> input[type='checkbox']) {
+	list-style: none;
+	margin-left: -18px;
+}
+
+.doc-shell pre {
+	margin: 18px 0 24px;
+	padding: 14px 16px;
+	overflow-x: auto;
+	border: 1px solid var(--code-border);
+	border-radius: var(--r-md);
+	background: var(--code-bg);
+}
+
+.doc-shell pre code {
+	display: block;
+	padding: 0;
+	background: transparent;
+	font-family: var(--font-mono);
+	font-size: 12.5px;
+	line-height: 1.65;
+}
+
+.doc-shell pre.doc-mermaid.language-mermaid {
+	position: relative;
+	padding: 24px;
+	border-color: var(--border);
+	background: linear-gradient(180deg, var(--surface), var(--bg-elev));
+	text-align: center;
+}
+
+.doc-shell pre.doc-mermaid.language-mermaid::after {
+	content: 'diagram · mermaid';
+	position: absolute;
+	top: 8px;
+	right: 10px;
+	color: var(--text-mute);
+	font-family: var(--font-mono);
+	font-size: 9.5px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.doc-shell pre.doc-mermaid.language-mermaid svg {
+	display: inline-block;
+	max-width: 100%;
+	height: auto;
+}
+
+.doc-shell blockquote.doc-callout {
+	display: flex;
+	gap: 14px;
+	align-items: flex-start;
+	margin: 18px 0 22px;
+	padding: 14px 16px 14px 18px;
+	border: 1px solid var(--border);
+	border-left: 2px solid var(--accent);
+	border-radius: 0 var(--r-md) var(--r-md) 0;
+	background: linear-gradient(to right, var(--accent-soft), transparent 50%);
+}
+
+.doc-shell blockquote.doc-callout::before {
+	display: inline-grid;
+	place-items: center;
+	min-width: 22px;
+	height: 22px;
+	margin-top: 1px;
+	font-family: var(--font-mono);
+	font-size: 10px;
+	font-weight: 700;
+}
+
+.doc-shell blockquote.doc-callout p {
+	margin: 0;
+}
+
+.doc-shell blockquote.doc-callout p:first-child strong:first-child {
+	color: currentColor;
+	font-family: var(--font-mono);
+	font-size: 13px;
+	letter-spacing: 0em;
+	text-transform: uppercase;
+}
+
+.doc-shell blockquote.doc-callout-todo {
+	border-left-color: var(--warn);
+	background: linear-gradient(to right, var(--warn-soft), transparent 50%);
+}
+
+.doc-shell blockquote.doc-callout-todo::before {
+	content: '!';
+	color: var(--warn);
+}
+
+.doc-shell blockquote.doc-callout-open-question {
+	border-left-color: var(--info);
+	background: linear-gradient(to right, var(--info-soft), transparent 50%);
+}
+
+.doc-shell blockquote.doc-callout-open-question::before {
+	content: '?';
+	color: var(--info);
+}
+
+.doc-shell blockquote.doc-callout-discussion {
+	border-left-color: var(--talk);
+	background: linear-gradient(to right, var(--talk-soft), transparent 50%);
+}
+
+.doc-shell blockquote.doc-callout-discussion::before {
+	content: '…';
+	color: var(--talk);
+}
+
+.doc-shell table {
+	display: table;
+	width: 100%;
+	margin: 18px 0 24px;
+	border-collapse: separate;
+	border-spacing: 0;
+	table-layout: fixed;
+	border: 1px solid var(--border);
+	border-radius: var(--r-sm);
+}
+
+.doc-shell th,
+.doc-shell td {
+	padding: 7px 9px;
+	border-left: 1px solid var(--border);
+	border-bottom: 1px solid var(--border);
+	vertical-align: top;
+	overflow-wrap: break-word;
+}
+
+.doc-shell th:first-child,
+.doc-shell td:first-child {
+	border-left: 0;
+}
+
+.doc-shell tr:last-child td {
+	border-bottom: 0;
+}
+
+.doc-shell th {
+	background: var(--surface);
+	color: var(--text);
+	font-weight: 500;
+}

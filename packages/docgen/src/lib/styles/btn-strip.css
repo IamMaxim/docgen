@@ -1,0 +1,101 @@
+.btn-strip {
+	display: inline-flex;
+	align-items: stretch;
+	height: 32px;
+	border: 1px solid var(--border);
+	border-radius: var(--r-md);
+	background: var(--surface);
+}
+
+.btn-strip > * {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 32px;
+	height: 100%;
+	padding: 0 10px;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	color: var(--text-dim);
+	text-decoration: none;
+	font: inherit;
+	font-size: 13px;
+	box-shadow: none;
+}
+
+.btn-strip > .icon-only {
+	padding: 0;
+}
+
+.btn-strip > *:first-child {
+	border-top-left-radius: var(--r-md);
+	border-bottom-left-radius: var(--r-md);
+}
+
+.btn-strip > *:last-child {
+	border-top-right-radius: var(--r-md);
+	border-bottom-right-radius: var(--r-md);
+}
+
+.btn-strip > *:hover:not(:disabled):not([aria-disabled='true']) {
+	background: var(--bg-soft);
+	color: var(--text);
+}
+
+.btn-strip > .is-active,
+.btn-strip > [aria-pressed='true'] {
+	background: var(--bg-soft);
+	color: var(--text);
+}
+
+.btn-strip > .is-primary:not(:disabled) {
+	background: var(--accent);
+	color: var(--bg);
+	font-weight: 500;
+}
+.btn-strip > .is-primary:not(:disabled):hover {
+	background: var(--accent);
+	color: var(--bg);
+	filter: brightness(1.08);
+}
+
+.btn-strip > * + * {
+	border-left: 1px solid var(--border);
+}
+
+.btn-strip > *:disabled,
+.btn-strip > *[aria-disabled='true'] {
+	opacity: 0.55;
+	cursor: default;
+}
+
+/* Neutralize ad-hoc per-element borders set elsewhere when nested in a strip. */
+.btn-strip .icon-action {
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	width: auto;
+	height: 100%;
+}
+
+/* Inline a child component (SettingsMenu wrapper) so its inner button
+   participates directly in the strip's hover/click target. */
+.btn-strip > .settings-menu {
+	padding: 0;
+}
+.btn-strip .settings-menu .icon-btn {
+	width: 32px;
+	min-width: 32px;
+	height: 100%;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	color: var(--text-dim);
+}
+.btn-strip .settings-menu .icon-btn:hover,
+.btn-strip .settings-menu .icon-btn.is-active {
+	background: var(--bg-soft);
+	color: var(--text);
+}

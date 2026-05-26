@@ -1,0 +1,236 @@
+.diff-page {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	width: 100%;
+	min-width: 0;
+	color: var(--text);
+	font-size: 13px;
+	--diff-added: oklch(0.76 0.12 145);
+	--diff-added-bg: oklch(0.76 0.12 145 / 0.09);
+	--diff-removed: var(--text-error);
+	--diff-removed-bg: oklch(0.67 0.16 25 / 0.1);
+	--gutter-w: 22px;
+}
+
+.diff-page .added {
+	color: var(--diff-added);
+}
+.diff-page .removed {
+	color: var(--diff-removed);
+}
+
+.diff-page .pill {
+	display: inline-grid;
+	place-items: center;
+	min-width: 14px;
+	height: 14px;
+	padding: 0 3px;
+	border-radius: 3px;
+	font-family: var(--font-mono);
+	font-size: 9px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	line-height: 1;
+}
+.diff-page .pill--added {
+	background: var(--diff-added-bg);
+	color: var(--diff-added);
+}
+.diff-page .pill--modified {
+	background: oklch(0.78 0.13 80 / 0.18);
+	color: oklch(0.78 0.13 80);
+}
+.diff-page .pill--deleted {
+	background: var(--diff-removed-bg);
+	color: var(--diff-removed);
+}
+.diff-page .pill--renamed {
+	background: oklch(0.72 0.1 240 / 0.18);
+	color: oklch(0.72 0.1 240);
+}
+
+.diff-page .warnings,
+.diff-page .empty-state {
+	padding: 14px 16px;
+	border: 1px solid var(--border);
+	border-radius: var(--r-md);
+	background: var(--surface);
+}
+.diff-page .warnings ul {
+	margin: 10px 0 0;
+	padding-left: 18px;
+	color: var(--text-dim);
+}
+
+.diff-page .skel {
+	display: grid;
+	gap: 16px;
+}
+.diff-page .skel--page {
+	grid-template-columns: var(--rail-w) minmax(0, 1fr);
+}
+.diff-page .skel--page .skel-rail,
+.diff-page .skel--page .skel-main {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.diff-page .skel--page .skel-rail div,
+.diff-page .skel--page .skel-main div,
+.diff-page .skel--blocks div {
+	height: 48px;
+	border-radius: var(--r-sm);
+	background: linear-gradient(
+		90deg,
+		var(--surface) 0%,
+		var(--surface-hi) 50%,
+		var(--surface) 100%
+	);
+	background-size: 200% 100%;
+	animation: diff-shimmer 1.4s linear infinite;
+}
+.diff-page .skel--page .skel-main div {
+	height: 96px;
+}
+@keyframes diff-shimmer {
+	from {
+		background-position: 200% 0;
+	}
+	to {
+		background-position: -200% 0;
+	}
+}
+
+.diff-page .kbd-hint {
+	margin: 4px 0 0;
+	color: var(--text-mute);
+	font-size: 10px;
+}
+.diff-page .kbd-hint kbd {
+	display: inline-block;
+	min-width: 12px;
+	padding: 0 3px;
+	border: 1px solid var(--border);
+	border-radius: 2px;
+	background: var(--surface);
+	font-family: var(--font-mono);
+	font-size: 9px;
+	text-align: center;
+}
+
+.diff-page .col-resizer {
+	position: sticky;
+	top: var(--topbar-height);
+	height: calc(100vh - var(--topbar-height));
+	width: 5px;
+	cursor: col-resize;
+	background: transparent;
+	touch-action: none;
+	user-select: none;
+	z-index: 5;
+}
+.diff-page .col-resizer::before {
+	content: '';
+	position: absolute;
+	left: 2px;
+	top: 0;
+	bottom: 0;
+	width: 1px;
+	background: var(--border);
+	transition:
+		background 0.12s,
+		width 0.12s;
+}
+.diff-page .col-resizer:hover::before {
+	background: var(--accent-line);
+	width: 2px;
+	left: 1.5px;
+}
+
+/* Diff is a doc-shell with main docs base styling intact. */
+/* Only spacing/rhythm compacted; sizes, colors, links inherit. */
+.diff-page .rendered-blocks.doc-shell {
+	max-width: none;
+	display: flex;
+}
+
+.diff-page .doc-shell h1:first-child {
+	display: block;
+}
+
+.diff-page .diff-block > h1,
+.diff-page .diff-block > h2,
+.diff-page .diff-block > h3,
+.diff-page .diff-block > h4 {
+	margin-top: 8px;
+}
+.diff-page .diff-block > h1:first-child,
+.diff-page .diff-block > h2:first-child,
+.diff-page .diff-block > h3:first-child,
+.diff-page .diff-block > h4:first-child {
+	margin-top: 2px;
+}
+.diff-page .doc-shell h2 {
+	margin: 18px 0 6px;
+}
+.diff-page .doc-shell h3 {
+	margin: 12px 0 4px;
+}
+.diff-page .doc-shell h4 {
+	margin: 10px 0 4px;
+}
+.diff-page .doc-shell p {
+	margin: 0 0 6px;
+}
+.diff-page .doc-shell ul,
+.diff-page .doc-shell ol {
+	margin: 0 0 6px;
+}
+.diff-page .doc-shell li {
+	margin: 2px 0;
+}
+.diff-page .doc-shell pre {
+	margin: 4px 0;
+}
+.diff-page .doc-shell table {
+	margin: 6px 0;
+}
+.diff-page .doc-shell blockquote {
+	margin: 4px 0;
+}
+.diff-page .doc-shell pre.doc-mermaid.language-mermaid {
+	padding: 10px;
+	margin: 4px 0;
+}
+
+/* Raw rust-ref HTML (server-rendered, no Svelte component instance). */
+/* Match RustRef.svelte appearance + inject icon via background. */
+.diff-page a.rust-ref-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	max-width: 100%;
+	min-width: 0;
+	padding: 1px 7px 1px 22px;
+	border: 1px solid var(--code-border);
+	border-radius: 4px;
+	background: var(--code-bg) no-repeat 5px center / 14px 14px;
+	background-image: url('/icons/rust.svg');
+	color: var(--text);
+	font-family: var(--font-mono);
+	font-size: 0.85em;
+	text-decoration: none;
+	white-space: normal;
+	vertical-align: middle;
+}
+.diff-page a.rust-ref-link:hover {
+	border-color: var(--accent-line);
+	color: var(--accent);
+}
+.diff-page a.rust-ref-link .rust-ref__path {
+	min-width: 0;
+	overflow-wrap: anywhere;
+	word-break: normal;
+}

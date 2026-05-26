@@ -1,0 +1,91 @@
+{
+  "name": "@iammaxim/docgen",
+  "version": "0.1.0",
+  "description": "Reusable SvelteKit wiki: mdsvex reader + diff timeline + dev editor.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iammaxim/docgen.git",
+    "directory": "packages/docgen"
+  },
+  "homepage": "https://github.com/iammaxim/docgen#readme",
+  "bugs": "https://github.com/iammaxim/docgen/issues",
+  "keywords": ["sveltekit", "mdsvex", "docs", "wiki", "markdown", "documentation"],
+  "scripts": {
+    "build": "svelte-kit sync && svelte-package -i src/lib -o dist && node scripts/fix-dist-extensions.mjs",
+    "prepublishOnly": "npm run build",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "test": "bash -O globstar -c 'npx tsx --test src/lib/**/*.test.ts'",
+    "test:server": "bash -O globstar -c 'npx tsx --test src/lib/**/*.server.test.ts'",
+    "format": "prettier --write .",
+    "lint": "prettier --check . && eslint ."
+  },
+  "bin": {
+    "docgen": "./bin/cli.mjs"
+  },
+  "files": ["dist", "bin", "README.md"],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/server/index.d.ts",
+      "default": "./dist/server/index.js"
+    },
+    "./config": {
+      "types": "./dist/config.d.ts",
+      "default": "./dist/config.js"
+    },
+    "./mdsvex": {
+      "types": "./dist/mdsvex/index.d.ts",
+      "default": "./dist/mdsvex/index.js"
+    },
+    "./vite": {
+      "types": "./dist/vite/index.d.ts",
+      "default": "./dist/vite/index.js"
+    },
+    "./styles": "./dist/styles/index.css",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "@sveltejs/kit": "^2.48.0",
+    "mdsvex": "^0.12.0",
+    "svelte": "^5.43.0",
+    "vite": "^7.0.0"
+  },
+  "dependencies": {
+    "@codemirror/lang-markdown": "^6.5.0",
+    "@codemirror/merge": "^6.12.1",
+    "codemirror": "^6.0.2",
+    "katex": "^0.16.27",
+    "mermaid": "^11.12.2",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-katex-svelte": "^1.2.0",
+    "rehype-slug": "^6.0.0",
+    "remark-math": "^3.0.0",
+    "unist-util-visit": "^5.0.0",
+    "vfile": "^6.0.3"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.48.5",
+    "@sveltejs/package": "^2.5.6",
+    "@sveltejs/vite-plugin-svelte": "^6.2.1",
+    "@types/hast": "^3.0.4",
+    "@types/mdast": "^4.0.4",
+    "@types/node": "^20",
+    "@types/prismjs": "^1.26.5",
+    "eslint": "^9.39.1",
+    "mdsvex": "^0.12.6",
+    "prettier": "^3.6.2",
+    "prettier-plugin-svelte": "^3.4.0",
+    "svelte": "^5.43.8",
+    "svelte-check": "^4.3.4",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.2"
+  }
+}

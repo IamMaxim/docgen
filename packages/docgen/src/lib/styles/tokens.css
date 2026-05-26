@@ -1,0 +1,97 @@
+:root {
+	--bg: #0d0c0a;
+	--bg-elev: #131210;
+	--bg-soft: #ffffff08;
+	--surface: #15140f;
+	--surface-hi: #1c1b16;
+	--border: #232220;
+	--border-strong: #2d2b27;
+	--hairline: #1d1c19;
+	--text: #ecebe5;
+	--text-dim: #a8a59a;
+	--text-mute: #6f6d64;
+	--text-error: #ff8a8a;
+	--accent: oklch(0.78 0.13 75);
+	--accent-soft: oklch(0.78 0.13 75 / 0.14);
+	--accent-line: oklch(0.78 0.13 75 / 0.4);
+	--warn: oklch(0.82 0.13 55);
+	--warn-soft: oklch(0.82 0.13 55 / 0.12);
+	--info: oklch(0.78 0.09 220);
+	--info-soft: oklch(0.78 0.09 220 / 0.12);
+	--talk: oklch(0.78 0.1 320);
+	--talk-soft: oklch(0.78 0.1 320 / 0.12);
+	--code-bg: #1a1814;
+	--code-border: #262320;
+	--font-sans: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	--font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', 'JetBrains Mono', monospace;
+	--font-serif: 'Times New Roman', serif;
+	--r-xs: 3px;
+	--r-sm: 5px;
+	--r-md: 8px;
+	--r-lg: 12px;
+	--left-rail-width: 264px;
+	--right-rail-width: 238px;
+	--topbar-height: 52px;
+	font-family: var(--font-sans);
+	background: var(--bg);
+	color: var(--text);
+}
+
+:root[data-theme='light'] {
+	--bg: #faf8f3;
+	--bg-elev: #ffffff;
+	--bg-soft: #00000005;
+	--surface: #f4f1ea;
+	--surface-hi: #ece8de;
+	--border: #e2ddd0;
+	--border-strong: #d5cfbf;
+	--hairline: #e8e3d6;
+	--text: #181712;
+	--text-dim: #5f5d54;
+	--text-mute: #918e83;
+	--text-error: #dc2626;
+	--accent: oklch(0.55 0.14 60);
+	--accent-soft: oklch(0.55 0.14 60 / 0.1);
+	--accent-line: oklch(0.55 0.14 60 / 0.3);
+	--warn-soft: oklch(0.82 0.13 55 / 0.1);
+	--info-soft: oklch(0.78 0.09 220 / 0.1);
+	--talk-soft: oklch(0.78 0.1 320 / 0.1);
+	--code-bg: #efebdf;
+	--code-border: #ddd7c5;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-padding-top: calc(var(--topbar-height) + 18px);
+}
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--text);
+	font-size: 14.5px;
+	line-height: 1.55;
+	-webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+	font-family: inherit;
+}
+
+button {
+	cursor: pointer;
+}
+
+:focus-visible {
+	outline: 1px solid var(--accent);
+	outline-offset: 2px;
+}
+
+.katex,
+.katex-display {
+	color: var(--text);
+}

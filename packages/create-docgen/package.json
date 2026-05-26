@@ -1,0 +1,30 @@
+{
+  "name": "@iammaxim/create-docgen",
+  "version": "0.1.0",
+  "description": "Bootstrap a new @iammaxim/docgen documentation site.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iammaxim/docgen.git",
+    "directory": "packages/create-docgen"
+  },
+  "homepage": "https://github.com/iammaxim/docgen#readme",
+  "bugs": "https://github.com/iammaxim/docgen/issues",
+  "keywords": ["sveltekit", "mdsvex", "docs", "wiki", "scaffolding", "create"],
+  "bin": {
+    "create-docgen": "./bin/index.mjs"
+  },
+  "files": ["bin", "lib", "templates", "README.md"],
+  "scripts": {
+    "prepublishOnly": "node scripts/bundle-templates.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "kolorist": "^1.8.0",
+    "prompts": "^2.4.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
