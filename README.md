@@ -49,7 +49,3 @@ npm test
 Tests are plain `node --test` over TypeScript via `tsx`. No bundler in the loop.
 
 See [`docs/PUBLISHING.md`](docs/PUBLISHING.md) for the release process.
-
-## License
-
-MIT © Maxim Stepanov

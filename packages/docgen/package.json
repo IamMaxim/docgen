@@ -1,6 +1,6 @@
 {
   "name": "@iammaxim/docgen",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Reusable SvelteKit wiki: mdsvex reader + diff timeline + dev editor.",
   "type": "module",
   "license": "MIT",
@@ -11,7 +11,14 @@
   },
   "homepage": "https://github.com/iammaxim/docgen#readme",
   "bugs": "https://github.com/iammaxim/docgen/issues",
-  "keywords": ["sveltekit", "mdsvex", "docs", "wiki", "markdown", "documentation"],
+  "keywords": [
+    "sveltekit",
+    "mdsvex",
+    "docs",
+    "wiki",
+    "markdown",
+    "documentation"
+  ],
   "scripts": {
     "build": "svelte-kit sync && svelte-package -i src/lib -o dist && node scripts/fix-dist-extensions.mjs",
     "prepublishOnly": "npm run build",
@@ -24,7 +31,11 @@
   "bin": {
     "docgen": "./bin/cli.mjs"
   },
-  "files": ["dist", "bin", "README.md"],
+  "files": [
+    "dist",
+    "bin",
+    "README.md"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

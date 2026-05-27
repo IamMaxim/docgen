@@ -4,7 +4,7 @@ import { dirname, resolve } from 'node:path';
 import { existsSync } from 'node:fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const distLinkGraph = resolve(__dirname, '../dist/cli/link-graph.js');
+const distLinkGraph = resolve(__dirname, '../dist/cli/link-graph.mjs');
 const srcLinkGraph = resolve(__dirname, '../src/lib/cli/link-graph.mjs');
 
 const target = existsSync(distLinkGraph) ? distLinkGraph : srcLinkGraph;
