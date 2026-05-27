@@ -6,11 +6,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iammaxim/docgen.git",
+    "url": "git+https://github.com/IamMaxim/docgen.git",
     "directory": "packages/docgen"
   },
-  "homepage": "https://github.com/iammaxim/docgen#readme",
-  "bugs": "https://github.com/iammaxim/docgen/issues",
+  "homepage": "https://github.com/IamMaxim/docgen#readme",
+  "bugs": "https://github.com/IamMaxim/docgen/issues",
   "keywords": [
     "sveltekit",
     "mdsvex",
