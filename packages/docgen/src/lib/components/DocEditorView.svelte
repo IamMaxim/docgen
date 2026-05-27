@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { beforeNavigate } from '$app/navigation';
-	import { resolve } from '$app/paths';
 	import { onDestroy, onMount, tick } from 'svelte';
 	import DocEditorPreview from '$lib/components/DocEditorPreview.svelte';
 	import DocSourceEditor from '$lib/components/DocSourceEditor.svelte';
@@ -171,9 +170,9 @@
 			</div>
 			<div class="btn-strip">
 				{#if data.currentDoc.slug.length === 0}
-					<a href={resolve('/docs')}>View</a>
+					<a href="/docs">View</a>
 				{:else}
-					<a href={resolve('/docs/[...slug]', { slug: data.currentDoc.slug.join('/') })}>View</a>
+					<a href={`/docs/${data.currentDoc.slug.join('/')}`}>View</a>
 				{/if}
 				<button
 					type="button"

@@ -23,8 +23,8 @@
     "build": "svelte-kit sync && svelte-package -i src/lib -o dist && node scripts/fix-dist-extensions.mjs",
     "prepublishOnly": "npm run build",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "test": "bash -O globstar -c 'npx tsx --test src/lib/**/*.test.ts'",
-    "test:server": "bash -O globstar -c 'npx tsx --test src/lib/**/*.server.test.ts'",
+    "test": "find src/lib -name '*.test.ts' -print0 | xargs -0 npx tsx --test",
+    "test:server": "find src/lib -name '*.server.test.ts' -print0 | xargs -0 npx tsx --test",
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint ."
   },

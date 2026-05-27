@@ -16,6 +16,9 @@ This file covers both packages in the monorepo:
 
 ### Fixed
 
+#### CI
+- Fixed CI linting and test failures.
+
 #### `@iammaxim/docgen`
 
 - `docgen` CLI binary: fixed wrong file extension when resolving the built

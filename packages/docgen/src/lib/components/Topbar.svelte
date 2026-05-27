@@ -48,7 +48,7 @@
         <div class="btn-strip">
           <a
             class="icon-only"
-            href={resolve("/docs/diff")}
+            href="/docs/diff"
             aria-label="Show documentation diff"
             title="Show documentation diff"
           >
@@ -58,7 +58,7 @@
             {#if editorSlug.length === 0}
               <a
                 class="icon-only"
-                href={resolve("/docs/edit")}
+                href="/docs/edit"
                 aria-label="Edit documentation page"
                 title="Edit documentation page"
               >
@@ -67,9 +67,7 @@
             {:else}
               <a
                 class="icon-only"
-                href={resolve("/docs/edit/[...slug]", {
-                  slug: editorSlug.join("/"),
-                })}
+                href={`/docs/edit/${editorSlug.join("/")}`}
                 aria-label="Edit documentation page"
                 title="Edit documentation page"
               >
