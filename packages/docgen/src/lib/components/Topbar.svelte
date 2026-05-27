@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { resolve } from "$app/paths";
+  import { resolve, base } from "$app/paths";
   import Icon from "./Icon.svelte";
   import ThemeToggle from "./ThemeToggle.svelte";
 
@@ -48,7 +48,7 @@
         <div class="btn-strip">
           <a
             class="icon-only"
-            href="/docs/diff"
+            href={`${base}/docs/diff`}
             aria-label="Show documentation diff"
             title="Show documentation diff"
           >
@@ -58,7 +58,7 @@
             {#if editorSlug.length === 0}
               <a
                 class="icon-only"
-                href="/docs/edit"
+                href={`${base}/docs/edit`}
                 aria-label="Edit documentation page"
                 title="Edit documentation page"
               >
@@ -67,7 +67,7 @@
             {:else}
               <a
                 class="icon-only"
-                href={`/docs/edit/${editorSlug.join("/")}`}
+                href={`${base}/docs/edit/${editorSlug.join("/")}`}
                 aria-label="Edit documentation page"
                 title="Edit documentation page"
               >
