@@ -9,3 +9,8 @@ build
 !.env.example
 .vite
 coverage
+
+# Generated at publish by packages/create-docgen/scripts/bundle-templates.mjs.
+# Source of truth is the monorepo-root ./templates; the scaffolder falls back
+# to it in dev, so this vendored copy only needs to exist in the published tarball.
+/packages/create-docgen/templates/

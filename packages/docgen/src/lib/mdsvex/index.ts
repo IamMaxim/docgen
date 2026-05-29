@@ -6,12 +6,14 @@ import rehypeDocCalloutsImpl from '../remark/rehypeDocCallouts.js';
 import rehypeDocsBaseImpl from '../remark/rehypeDocsBase.js';
 import createWikiLinks from '../remark/wikiLinks.js';
 import escapeWikilinkPipesFactory from '../remark/escapeWikilinkPipes.js';
+import remarkDocImagesImpl from '../remark/remarkDocImages.js';
 import 'katex/contrib/mhchem';
 
 export const escapeWikilinkPipes = escapeWikilinkPipesFactory;
 export { createWikiLinks };
 export const rehypeDocCallouts = rehypeDocCalloutsImpl;
 export const rehypeDocsBase = rehypeDocsBaseImpl;
+export const remarkDocImages = remarkDocImagesImpl;
 
 export type BuildMdsvexOptions = {
 	/** Absolute path to a Svelte file used as mdsvex layout (wraps every doc). */
@@ -32,6 +34,7 @@ export const buildMdsvexConfig = (opts: BuildMdsvexOptions) => ({
 	extensions: ['.svx', '.md'],
 	remarkPlugins: [
 		remarkMath,
+		remarkDocImagesImpl,
 		() =>
 			createWikiLinks({
 				docsDir: opts.docsDir,

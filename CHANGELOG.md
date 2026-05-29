@@ -12,6 +12,42 @@ This file covers both packages in the monorepo:
 
 ## [Unreleased]
 
+## [0.1.4] - 2026-05-29
+
+### Added
+
+#### `@iammaxim/docgen`
+
+- `remarkDocImages`: relative image paths in docs (`![](./assets/x.png)`) are
+  rewritten to Vite imports, so attachments resolve in both `dev` and the
+  static build (small files inline as data URIs, larger ones emit as hashed
+  assets) instead of becoming dead links. Wired into `buildMdsvexConfig`, so
+  every site gets it automatically.
+- `makeDocPageLoad` / `makeDocPageEntries`: loaders for a `baseUrl`-agnostic
+  root catch-all route, resolving docs by full path via `registry.getEntryByPath`.
+
+### Fixed
+
+#### `@iammaxim/create-docgen`
+
+- **Non-default `baseUrl` no longer 404s.** Doc routes moved from a hardcoded
+  `src/routes/docs/**` to a root catch-all `src/routes/[...rest]/`, so any
+  configured `baseUrl` (e.g. `/wiki`) — and SvelteKit `base` paths — resolve
+  correctly in dev and the static build.
+- **Topbar controls restored.** The layout now wires the `theme` store, so a
+  scaffolded site shows a working theme toggle out of the box.
+- **Independent scrolling.** The layout shell is fixed-height with separate
+  scroll areas for the sidebar tree and page content; the topbar stays put.
+- **`vite.config.ts` sets `server.fs.allow`** to the configured `docsDir`, so a
+  docs directory outside the app root (and its attachments) can be served.
+
+### Changed
+
+- The vendored copy of the templates under `packages/create-docgen/templates/`
+  is no longer committed; it is generated from the monorepo-root `./templates`
+  by `bundle-templates.mjs` at publish time (the scaffolder falls back to the
+  root copy in development).
+
 ## [0.1.3] - 2026-05-29
 
 ### Fixed
@@ -110,7 +146,8 @@ Initial public release.
   - `minimal` — bare scaffolding (configs + empty `docs/`).
   - `starter` — minimal plus sample documents and a richer homepage.
 
-[Unreleased]: https://github.com/iammaxim/docgen/compare/v0.1.3...HEAD
+[Unreleased]: https://github.com/iammaxim/docgen/compare/v0.1.4...HEAD
+[0.1.4]: https://github.com/iammaxim/docgen/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/iammaxim/docgen/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/iammaxim/docgen/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/iammaxim/docgen/releases/tag/v0.1.1

@@ -1,7 +1,14 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import { page } from '$app/stores';
-	import { setDocgenRegistry, Topbar, DocTree, SearchModal } from '@iammaxim/docgen';
+	import {
+		setDocgenRegistry,
+		Topbar,
+		DocTree,
+		SearchModal,
+		theme,
+		type Theme
+	} from '@iammaxim/docgen';
 	import '@iammaxim/docgen/styles';
 	import 'katex/dist/katex.min.css';
 	import { registry, config } from '$lib/docgen-registry';
@@ -36,6 +43,8 @@
 	<Topbar
 		siteTitle={config.siteTitle}
 		onSearch={() => (searchOpen = true)}
+		theme={$theme}
+		onTheme={(value: Theme) => theme.set(value)}
 		docsControlsAvailable={false}
 	/>
 	<aside class="left">
@@ -50,11 +59,13 @@
 </div>
 
 <style>
+	/* Fixed-height shell: the topbar stays put while the tree and the page
+	   content scroll independently within the remaining viewport height. */
 	.app-shell {
 		display: grid;
 		grid-template-columns: 260px 1fr;
-		grid-template-rows: auto 1fr;
-		min-height: 100vh;
+		grid-template-rows: auto minmax(0, 1fr);
+		height: 100vh;
 	}
 	.app-shell :global(> :first-child) {
 		grid-column: 1 / -1;
@@ -62,10 +73,11 @@
 	.left {
 		border-right: 1px solid var(--border, #e5e5e5);
 		padding: 1rem;
-		overflow: auto;
+		overflow-y: auto;
 	}
 	.content {
 		padding: 2rem;
 		max-width: 1024px;
+		overflow-y: auto;
 	}
 </style>

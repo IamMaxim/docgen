@@ -58,6 +58,8 @@ export {
 	makeDocsIndexLoad,
 	makeDocsSlugLoad,
 	makeDocsSlugEntries,
+	makeDocPageLoad,
+	makeDocPageEntries,
 	makeHomeLoad
 } from './loaders/index.ts';
 
