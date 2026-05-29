@@ -1,0 +1,16 @@
+# GitLab Pages deploy for a docgen site.
+# BASE_PATH is derived from the project's Pages URL path, so it works for both
+# `namespace.pages.host/project` and `pages.host/group/project` layouts.
+pages:
+  image: node:22
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - npm ci
+    - export BASE_PATH="$(printf '%s' "$CI_PAGES_URL" | sed -E 's#^https?://[^/]+##; s#/$##')"
+    - echo "Building with BASE_PATH=$BASE_PATH"
+    - npm run build
+    - rm -rf public && mv build public
+  artifacts:
+    paths:
+      - public

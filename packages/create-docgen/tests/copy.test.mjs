@@ -133,3 +133,31 @@ test('starter template scaffolds with sample docs', () => {
 
 	rmSync(target, { recursive: true });
 });
+
+test('starter gitlabPages feature gates .gitlab-ci.yml', () => {
+	const root = resolveTemplatesRoot();
+	const templateDir = join(root, 'starter');
+	const manifest = JSON.parse(readFileSync(join(templateDir, 'template.json'), 'utf8'));
+
+	const off = mkTmp();
+	copyTemplate({
+		templateDir,
+		target: off,
+		tokens: { title: 'S', description: 'D', projectName: 's' },
+		manifest,
+		enabledFeatures: new Set()
+	});
+	assert.ok(!existsSync(join(off, '.gitlab-ci.yml')), 'gitlab CI absent when feature off');
+	rmSync(off, { recursive: true });
+
+	const on = mkTmp();
+	copyTemplate({
+		templateDir,
+		target: on,
+		tokens: { title: 'S', description: 'D', projectName: 's' },
+		manifest,
+		enabledFeatures: new Set(['gitlabPages'])
+	});
+	assert.ok(existsSync(join(on, '.gitlab-ci.yml')), 'gitlab CI present when feature on');
+	rmSync(on, { recursive: true });
+});
