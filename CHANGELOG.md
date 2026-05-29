@@ -22,6 +22,17 @@ This file covers both packages in the monorepo:
   so consumers can mount the diff and editor feature routes anywhere — e.g. a
   top-level namespace separate from `baseUrl`-scoped doc content.
 
+- The `starter` template is now batteries-included: full shell (resizable nav,
+  right rail, full-width toggle), diff timeline (`/diff`), dev editor (`/edit`,
+  with live preview via the dev-server plugin), home link graph, and sectioned
+  sample docs cross-linked with wikilinks. `minimal` is unchanged.
+
+#### `@iammaxim/create-docgen`
+
+- New optional `gitlabPages` feature scaffolds a `.gitlab-ci.yml` that derives
+  `BASE_PATH` from `$CI_PAGES_URL` (works for both GitLab Pages URL layouts),
+  alongside the existing `githubPages` workflow option.
+
 ### Fixed
 
 #### `@iammaxim/docgen`
