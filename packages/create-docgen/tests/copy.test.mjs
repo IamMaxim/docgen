@@ -125,8 +125,11 @@ test('starter template scaffolds with sample docs', () => {
 
 	const docs = readdirSync(join(target, 'docs'));
 	assert.ok(docs.includes('index.md'));
-	assert.ok(docs.includes('getting-started.md'));
-	assert.ok(docs.includes('structure.md'));
+	assert.ok(docs.includes('guide'));
+	assert.ok(docs.includes('reference'));
+	const guide = readdirSync(join(target, 'docs/guide'));
+	assert.ok(guide.includes('getting-started.md'));
+	assert.ok(guide.includes('structure.md'));
 
 	rmSync(target, { recursive: true });
 });

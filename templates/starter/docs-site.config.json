@@ -4,11 +4,14 @@
 	"docsDir": "docs",
 	"baseUrl": "/docs",
 	"ignore": [],
-	"sectionLabels": {},
+	"sectionLabels": {
+		"guide": "Guide",
+		"reference": "Reference"
+	},
 	"features": {
-		"diff": false,
+		"diff": true,
 		"editor": true,
 		"search": true,
-		"graph": false
+		"graph": true
 	}
 }

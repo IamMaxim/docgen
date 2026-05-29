@@ -23,7 +23,13 @@ const config = {
 			fallback: undefined,
 			strict: false
 		}),
-		paths: { base }
+		paths: { base },
+		prerender: {
+			// A brand-new site can have an empty diff timeline, leaving
+			// /diff/revisions/[id].json with no entries to prerender. Warn
+			// instead of failing the build in that case.
+			handleUnseenRoutes: 'warn'
+		}
 	}
 };
 
