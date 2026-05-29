@@ -12,7 +12,9 @@
 
 <section class="hero">
 	<h1>{config.siteTitle}</h1>
-	<p>{{description}}</p>
+	{#if config.description}
+		<p>{config.description}</p>
+	{/if}
 	<p><a href="{base}{config.baseUrl}">Open documentation →</a></p>
 	<p class="meta">{data.stats.totalDocs} documents</p>
 </section>

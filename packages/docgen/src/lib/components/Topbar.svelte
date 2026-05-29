@@ -6,23 +6,23 @@
   type Theme = "light" | "dark";
 
   let {
-    theme,
+    theme = "dark",
     onTheme,
     onSearch,
     onToggleRightRail,
     onToggleFullWidth,
-    rightRailCollapsed,
+    rightRailCollapsed = false,
     fullWidth = false,
     docsControlsAvailable = true,
     editorSlug = null,
     siteTitle = "Wiki",
   }: {
-    theme: Theme;
-    onTheme: (theme: Theme) => void;
+    theme?: Theme;
+    onTheme?: (theme: Theme) => void;
     onSearch: () => void;
-    onToggleRightRail: () => void;
-    onToggleFullWidth: () => void;
-    rightRailCollapsed: boolean;
+    onToggleRightRail?: () => void;
+    onToggleFullWidth?: () => void;
+    rightRailCollapsed?: boolean;
     fullWidth?: boolean;
     docsControlsAvailable?: boolean;
     editorSlug?: string[] | null;
@@ -75,35 +75,41 @@
               </a>
             {/if}
           {/if}
-          <button
-            type="button"
-            class="icon-only"
-            class:is-active={fullWidth}
-            onclick={onToggleFullWidth}
-            aria-label={fullWidth
-              ? "Use centered page width"
-              : "Use full page width"}
-            title={fullWidth
-              ? "Use centered page width"
-              : "Use full page width"}
-          >
-            <Icon name="maximize" />
-          </button>
-          <button
-            type="button"
-            class="icon-only"
-            class:is-active={!rightRailCollapsed}
-            onclick={onToggleRightRail}
-            aria-label={rightRailCollapsed
-              ? "Show page info"
-              : "Hide page info"}
-            title={rightRailCollapsed ? "Show page info" : "Hide page info"}
-          >
-            <Icon name="menu" />
-          </button>
+          {#if onToggleFullWidth}
+            <button
+              type="button"
+              class="icon-only"
+              class:is-active={fullWidth}
+              onclick={onToggleFullWidth}
+              aria-label={fullWidth
+                ? "Use centered page width"
+                : "Use full page width"}
+              title={fullWidth
+                ? "Use centered page width"
+                : "Use full page width"}
+            >
+              <Icon name="maximize" />
+            </button>
+          {/if}
+          {#if onToggleRightRail}
+            <button
+              type="button"
+              class="icon-only"
+              class:is-active={!rightRailCollapsed}
+              onclick={onToggleRightRail}
+              aria-label={rightRailCollapsed
+                ? "Show page info"
+                : "Hide page info"}
+              title={rightRailCollapsed ? "Show page info" : "Hide page info"}
+            >
+              <Icon name="menu" />
+            </button>
+          {/if}
         </div>
       {/if}
-      <ThemeToggle {theme} onSelect={onTheme} />
+      {#if onTheme}
+        <ThemeToggle {theme} onSelect={onTheme} />
+      {/if}
     </div>
   </div>
 </header>

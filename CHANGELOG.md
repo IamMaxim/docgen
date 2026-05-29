@@ -12,6 +12,62 @@ This file covers both packages in the monorepo:
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-05-29
+
+### Fixed
+
+#### `@iammaxim/create-docgen`
+
+Both bundled templates (`minimal` and `starter`) were unusable: the sidebar
+tree rendered empty, the home page crashed, search returned 404, and
+`vite build` failed during prerender. All four issues are fixed.
+
+- Sidebar tree was always empty because the layout passed `tree={...}` to
+  `DocTree`, but the component's prop is `nodes`. It now passes
+  `nodes`, plus `currentPath` and `linkBase` for active highlighting and
+  base-path-correct links.
+- Home page crashed on a literal `{{description}}` placeholder embedded in
+  Svelte markup (where `{{ }}` is not a scaffolder token). The site
+  description is now a config field and rendered as `{config.description}`.
+- `/docs/[...slug]` entry generator called `.join('/')` on slug entries that
+  were already strings, throwing during `vite build`. It now uses
+  `makeDocsSlugEntries` directly.
+- Added the missing `src/routes/search-index.json/+server.ts` endpoint, so
+  ⌘K / Ctrl+K search works (previously every query failed with a 404).
+- Templates now depend on `@iammaxim/docgen` `^0.1.3`.
+
+#### `@iammaxim/docgen`
+
+- Re-exported the `DocModuleMap`, `DocRawMap`, and `RawDocModule` types from
+  the package root. The generated `docgen-registry.ts` imports them, so
+  consumers' `svelte-check` failed with "has no exported member".
+- `SearchModal`: `open` is now `$bindable` and `onClose` is optional. The
+  modal closes itself, so consumers can use `bind:open` standalone.
+- `Topbar`: theme, full-width, and right-rail controls are now optional —
+  each renders only when its handler is supplied — so a minimal consumer can
+  show just the brand and search trigger.
+
+### Added
+
+#### `@iammaxim/docgen`
+
+- Optional `description` field in the docs-site config, surfaced on the home
+  page and available to consumers as `config.description`.
+
+## [0.1.2] - 2026-05-27
+
+### Fixed
+
+#### `@iammaxim/docgen`
+
+- `Topbar`: respect the SvelteKit `base` path on the diff and edit links so
+  they resolve correctly when the site is served from a sub-path.
+
+#### CI
+
+- Corrected the repository URL casing required for npm provenance and fixed
+  remaining release/CI failures.
+
 ## [0.1.1] - 2026-05-27
 
 ### Fixed
@@ -54,6 +110,8 @@ Initial public release.
   - `minimal` — bare scaffolding (configs + empty `docs/`).
   - `starter` — minimal plus sample documents and a richer homepage.
 
-[Unreleased]: https://github.com/iammaxim/docgen/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/iammaxim/docgen/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/iammaxim/docgen/compare/v0.1.2...v0.1.3
+[0.1.2]: https://github.com/iammaxim/docgen/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/iammaxim/docgen/releases/tag/v0.1.1
 [0.1.0]: https://github.com/iammaxim/docgen/releases/tag/v0.1.0
