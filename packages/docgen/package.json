@@ -1,6 +1,6 @@
 {
   "name": "@iammaxim/docgen",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Reusable SvelteKit wiki: mdsvex reader + diff timeline + dev editor.",
   "type": "module",
   "license": "MIT",
