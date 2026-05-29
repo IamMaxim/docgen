@@ -16,6 +16,8 @@
     docsControlsAvailable = true,
     editorSlug = null,
     siteTitle = "Wiki",
+    diffPath = "/docs/diff",
+    editPath = "/docs/edit",
   }: {
     theme?: Theme;
     onTheme?: (theme: Theme) => void;
@@ -27,6 +29,8 @@
     docsControlsAvailable?: boolean;
     editorSlug?: string[] | null;
     siteTitle?: string;
+    diffPath?: string;
+    editPath?: string;
   } = $props();
 </script>
 
@@ -48,7 +52,7 @@
         <div class="btn-strip">
           <a
             class="icon-only"
-            href={`${base}/docs/diff`}
+            href={`${base}${diffPath}`}
             aria-label="Show documentation diff"
             title="Show documentation diff"
           >
@@ -58,7 +62,7 @@
             {#if editorSlug.length === 0}
               <a
                 class="icon-only"
-                href={`${base}/docs/edit`}
+                href={`${base}${editPath}`}
                 aria-label="Edit documentation page"
                 title="Edit documentation page"
               >
@@ -67,7 +71,7 @@
             {:else}
               <a
                 class="icon-only"
-                href={`${base}/docs/edit/${editorSlug.join("/")}`}
+                href={`${base}${editPath}/${editorSlug.join("/")}`}
                 aria-label="Edit documentation page"
                 title="Edit documentation page"
               >
