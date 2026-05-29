@@ -125,8 +125,39 @@ test('starter template scaffolds with sample docs', () => {
 
 	const docs = readdirSync(join(target, 'docs'));
 	assert.ok(docs.includes('index.md'));
-	assert.ok(docs.includes('getting-started.md'));
-	assert.ok(docs.includes('structure.md'));
+	assert.ok(docs.includes('guide'));
+	assert.ok(docs.includes('reference'));
+	const guide = readdirSync(join(target, 'docs/guide'));
+	assert.ok(guide.includes('getting-started.md'));
+	assert.ok(guide.includes('structure.md'));
 
 	rmSync(target, { recursive: true });
+});
+
+test('starter gitlabPages feature gates .gitlab-ci.yml', () => {
+	const root = resolveTemplatesRoot();
+	const templateDir = join(root, 'starter');
+	const manifest = JSON.parse(readFileSync(join(templateDir, 'template.json'), 'utf8'));
+
+	const off = mkTmp();
+	copyTemplate({
+		templateDir,
+		target: off,
+		tokens: { title: 'S', description: 'D', projectName: 's' },
+		manifest,
+		enabledFeatures: new Set()
+	});
+	assert.ok(!existsSync(join(off, '.gitlab-ci.yml')), 'gitlab CI absent when feature off');
+	rmSync(off, { recursive: true });
+
+	const on = mkTmp();
+	copyTemplate({
+		templateDir,
+		target: on,
+		tokens: { title: 'S', description: 'D', projectName: 's' },
+		manifest,
+		enabledFeatures: new Set(['gitlabPages'])
+	});
+	assert.ok(existsSync(join(on, '.gitlab-ci.yml')), 'gitlab CI present when feature on');
+	rmSync(on, { recursive: true });
 });

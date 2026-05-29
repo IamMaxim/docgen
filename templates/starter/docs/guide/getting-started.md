@@ -39,3 +39,5 @@ npm run build    # static export to build/
 ```
 
 > TODO: write your first real document here.
+
+Next: read about the [[structure|project structure]] or the [[configuration|configuration reference]].

@@ -12,6 +12,23 @@ This file covers both packages in the monorepo:
 
 ## [Unreleased]
 
+## [0.1.5] - 2026-05-29
+
+### Added
+
+#### `@iammaxim/docgen`
+
+- `Topbar` accepts `diffPath` / `editPath` props (default `/docs/diff`, `/docs/edit`)
+  so consumers can mount the diff and editor feature routes anywhere — e.g. a
+  top-level namespace separate from `baseUrl`-scoped doc content.
+
+### Fixed
+
+#### `@iammaxim/docgen`
+
+- Editor "View" link is now base-aware (`${base}${currentDoc.path}`), fixing
+  subpath deploys (GitLab/GitHub Pages) and respecting a non-default `baseUrl`.
+
 ## [0.1.4] - 2026-05-29
 
 ### Added

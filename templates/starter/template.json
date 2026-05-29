@@ -1,6 +1,6 @@
 {
 	"name": "starter",
-	"description": "Minimal scaffolding plus three sample documents and a richer homepage.",
+	"description": "Batteries-included site: full shell with right rail, diff timeline, dev editor, home link graph, and sectioned sample docs.",
 	"features": {
 		"prettier": {
 			"files": [".prettierrc", ".prettierignore"]
@@ -29,6 +29,9 @@
 		},
 		"githubPages": {
 			"files": [".github/workflows/pages.yml"]
+		},
+		"gitlabPages": {
+			"files": [".gitlab-ci.yml"]
 		}
 	}
 }

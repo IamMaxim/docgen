@@ -6,6 +6,7 @@ import {
 	type Registry
 } from '@iammaxim/docgen';
 import rawConfig from '../../docs-site.config.json' with { type: 'json' };
+import linkGraph from './link-graph.json' with { type: 'json' };
 
 const modules = import.meta.glob('/docs/**/*.{md,svx}', { eager: true }) as DocModuleMap;
 const raw = import.meta.glob('/docs/**/*.{md,svx}', {
@@ -16,5 +17,5 @@ const raw = import.meta.glob('/docs/**/*.{md,svx}', {
 
 const config = validateConfig(rawConfig);
 
-export const registry: Registry = createRegistry({ modules, raw, config });
+export const registry: Registry = createRegistry({ modules, raw, config, linkGraph });
 export { config };

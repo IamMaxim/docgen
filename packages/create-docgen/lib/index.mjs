@@ -147,7 +147,8 @@ export const main = async (argv) => {
 					{ title: 'ESLint', value: 'eslint', selected: false },
 					{ title: 'Sample Mermaid diagram', value: 'mermaid', selected: false },
 					{ title: 'Sample KaTeX math', value: 'katex', selected: false },
-					{ title: 'GitHub Pages workflow', value: 'githubPages', selected: false }
+					{ title: 'GitHub Pages workflow', value: 'githubPages', selected: false },
+					{ title: 'GitLab Pages CI', value: 'gitlabPages', selected: false }
 				]
 			},
 			{ type: 'confirm', name: 'gitInit', message: 'Initialize git repository?', initial: true },

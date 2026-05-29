@@ -10,5 +10,6 @@ export default buildMdsvexConfig({
 	layout: docLayout,
 	docsDir: fileURLToPath(new URL(`./${siteConfig.docsDir}`, import.meta.url)),
 	ignore: siteConfig.ignore ?? [],
-	baseUrl: siteConfig.baseUrl ?? '/docs'
+	baseUrl: siteConfig.baseUrl ?? '/docs',
+	linkGraphOutput: fileURLToPath(new URL('./src/lib/link-graph.json', import.meta.url))
 });
