@@ -4,9 +4,9 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "predev": "docgen link-graph --config ./docs-site.config.json --out ./src/lib/link-graph.json",
+    "predev": "npx docgen link-graph --config ./docs-site.config.json --out ./src/lib/link-graph.json",
     "dev": "vite dev",
-    "prebuild": "docgen link-graph --config ./docs-site.config.json --out ./src/lib/link-graph.json",
+    "prebuild": "npx docgen link-graph --config ./docs-site.config.json --out ./src/lib/link-graph.json",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",

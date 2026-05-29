@@ -11,14 +11,18 @@
 	const recent = $derived(docs.slice(0, 6));
 
 	// Section cards come straight from config.sectionLabels (key -> label).
-	// doc.section holds the resolved label, so we count by label.
+	// doc.section holds the resolved label, so we count by label and link to the
+	// section's first page (folders have no index doc, so /docs/<key> may 404).
 	const sectionCards = $derived(
-		Object.entries(config.sectionLabels ?? {}).map(([key, label]) => ({
-			key,
-			label,
-			path: `${DOC_URL_PREFIX}/${key}`,
-			count: docs.filter((doc) => doc.section === label).length
-		}))
+		Object.entries(config.sectionLabels ?? {}).map(([key, label]) => {
+			const inSection = docs.filter((doc) => doc.section === label);
+			return {
+				key,
+				label,
+				path: inSection[0]?.path ?? DOC_URL_PREFIX,
+				count: inSection.length
+			};
+		})
 	);
 
 	const commitLabel = $derived(data.commit?.shortHash ?? 'local');
