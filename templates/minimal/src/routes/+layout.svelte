@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { base } from '$app/paths';
+	import { page } from '$app/stores';
 	import { setDocgenRegistry, Topbar, DocTree, SearchModal } from '@iammaxim/docgen';
 	import '@iammaxim/docgen/styles';
 	import 'katex/dist/katex.min.css';
@@ -9,6 +11,15 @@
 	let { children, data }: { children: Snippet; data: LayoutData } = $props();
 
 	setDocgenRegistry(registry);
+
+	// Current page path relative to `base`, used to highlight the active tree entry.
+	const currentPath = $derived.by(() => {
+		const pathname = ($page.url.pathname || '/').replace(/\/+$/, '') || '/';
+		if (base && pathname.startsWith(base)) {
+			return pathname.slice(base.length).replace(/\/+$/, '') || '/';
+		}
+		return pathname;
+	});
 
 	let searchOpen = $state(false);
 	const onKey = (event: KeyboardEvent) => {
@@ -22,9 +33,13 @@
 <svelte:window onkeydown={onKey} />
 
 <div class="app-shell">
-	<Topbar siteTitle={config.siteTitle} onSearch={() => (searchOpen = true)} />
+	<Topbar
+		siteTitle={config.siteTitle}
+		onSearch={() => (searchOpen = true)}
+		docsControlsAvailable={false}
+	/>
 	<aside class="left">
-		<DocTree tree={data.tree} />
+		<DocTree nodes={data.tree} {currentPath} linkBase={base} />
 	</aside>
 	<main class="content">
 		{@render children()}

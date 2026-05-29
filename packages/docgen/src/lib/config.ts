@@ -1,5 +1,7 @@
 export type DocsSiteConfig = {
   siteTitle: string;
+  /** Optional one-line site description, surfaced on the home page and in meta tags. */
+  description?: string;
   docsDir: string;
   baseUrl: string;
   ignore: string[];
@@ -48,6 +50,7 @@ export const validateConfig = (raw: unknown): DocsSiteConfig => {
   }
   return {
     siteTitle: obj.siteTitle,
+    description: typeof obj.description === 'string' ? obj.description : undefined,
     docsDir: obj.docsDir,
     baseUrl,
     ignore: Array.isArray(obj.ignore) ? (obj.ignore as string[]) : DEFAULTS.ignore,

@@ -14,7 +14,9 @@
 
 <section class="hero">
 	<h1>{config.siteTitle}</h1>
-	<p class="lede">{{description}}</p>
+	{#if config.description}
+		<p class="lede">{config.description}</p>
+	{/if}
 	<p>
 		<a class="cta" href="{base}{config.baseUrl}">Open documentation →</a>
 	</p>

@@ -59,6 +59,7 @@ test('copyTemplate scaffolds minimal template with token substitution', () => {
 	// Token substitution
 	const config = JSON.parse(readFileSync(join(target, 'docs-site.config.json'), 'utf8'));
 	assert.equal(config.siteTitle, 'My Site');
+	assert.equal(config.description, 'Hello.');
 	const appHtml = readFileSync(join(target, 'src/app.html'), 'utf8');
 	assert.ok(appHtml.includes('<title>My Site</title>'));
 	assert.ok(appHtml.includes('Hello.'));
@@ -66,7 +67,7 @@ test('copyTemplate scaffolds minimal template with token substitution', () => {
 	// Project name lands in package.json
 	const pkg = JSON.parse(readFileSync(join(target, 'package.json'), 'utf8'));
 	assert.equal(pkg.name, 'my-site');
-	assert.equal(pkg.dependencies['@iammaxim/docgen'], '^0.1.0');
+	assert.equal(pkg.dependencies['@iammaxim/docgen'], '^0.1.3');
 
 	// Prettier enabled -> .prettierrc copied
 	assert.ok(existsSync(join(target, '.prettierrc')), 'prettier feature copies .prettierrc');

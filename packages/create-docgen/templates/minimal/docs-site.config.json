@@ -1,5 +1,6 @@
 {
 	"siteTitle": "{{title}}",
+	"description": "{{description}}",
 	"docsDir": "docs",
 	"baseUrl": "/docs",
 	"ignore": [],

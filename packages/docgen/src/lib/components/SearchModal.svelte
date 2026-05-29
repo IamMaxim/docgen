@@ -17,14 +17,22 @@
 	};
 
 	let {
-		open,
+		open = $bindable(false),
 		onClose,
 		searchIndexUrl = '/search-index.json'
 	}: {
-		open: boolean;
-		onClose: () => void;
+		open?: boolean;
+		onClose?: () => void;
 		searchIndexUrl?: string;
 	} = $props();
+
+	// Self-sufficient close: works whether the parent uses `bind:open` or the
+	// `open` + `onClose` prop pair. Sets the bindable value and notifies the
+	// parent if it provided a handler.
+	const close = () => {
+		open = false;
+		onClose?.();
+	};
 
 	let query = $state('');
 	let selected = $state(0);
@@ -201,7 +209,7 @@
 
 	const openResult = (result: SearchResult | undefined) => {
 		if (!result) return;
-		onClose();
+		close();
 		goto(result.href);
 	};
 
@@ -209,7 +217,7 @@
 		if (!open) return;
 		if (event.key === 'Escape') {
 			event.preventDefault();
-			onClose();
+			close();
 		} else if (event.key === 'ArrowDown') {
 			event.preventDefault();
 			selected = Math.min(results.length - 1, selected + 1);
@@ -240,7 +248,7 @@
 
 {#if open}
 	<div class="search-overlay">
-		<button class="search-backdrop" type="button" aria-label="Close search" onclick={onClose}></button>
+		<button class="search-backdrop" type="button" aria-label="Close search" onclick={close}></button>
 		<div
 			class="search-modal"
 			role="dialog"
