@@ -43,7 +43,9 @@
 
 	const currentDoc = $derived(($page.data.currentDoc as DocMeta | undefined) ?? undefined);
 	const backlinks = $derived(($page.data.backlinks as DocMeta[] | undefined) ?? []);
-	const isDocsPage = $derived(currentPath === '/docs' || currentPath.startsWith('/docs/'));
+	const isDocsPage = $derived(
+		currentPath === config.baseUrl || currentPath.startsWith(`${config.baseUrl}/`)
+	);
 	const isDiffPage = $derived(currentPath === '/diff');
 	const isEditPage = $derived(currentPath === '/edit' || currentPath.startsWith('/edit/'));
 	const editorSlug = $derived.by(() => {
